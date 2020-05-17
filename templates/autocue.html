@@ -10,8 +10,8 @@
 
 <body class="no-margin">
     <header>
-        <a href="/">Autocue</a>
-        <a href="/edit-script/{{script_id}}">Edit this script</a>
+        <a href="/">Autocue</a>&emsp;
+        <a href="/edit-script/{{script_id}}">Edit this script</a>&emsp;
         <span id="speed-indicator">Gamepad not detected</span>
     </header>
 
@@ -24,7 +24,7 @@
 
     <script>
         var speed = 0;
-        var delay = 100;
+        var delay = 17;
         function pageScroll() {
             if (speed) {
                 window.scrollBy(0, speed);
@@ -47,16 +47,7 @@
 
             // debugger;
             var triggerPressure = Math.floor(gp.buttons[7].value * 100) || Math.floor(gp.buttons[6].value * -100);
-            if (Math.abs(triggerPressure) < 5) {
-                speed = 0;
-                delay = 100;
-            } else if (triggerPressure >= 5) {
-                speed = 1;
-                delay = 110 - triggerPressure;
-            } else {
-                speed = -1;
-                delay = 110 + triggerPressure;
-            }
+            speed = Math.ceil(triggerPressure / 20);
 
             speedIndicator.innerHTML = `triggerPressure=${triggerPressure}; speed=${speed}; delay=${delay}`;
 
