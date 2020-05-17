@@ -11,6 +11,9 @@
 <body>
     <p><a href="/">Autocue</a></p>
     <h1>Editor</h1>
+    {%- if text -%}
+    <p>Scripts are immutable. Any edits will be saved with a new ID.</p>
+    {%- endif -%}
     <form method="POST" action="/script">
         <textarea name="text" cols="50" rows="20">{{text}}</textarea>
         <br>

@@ -12,10 +12,13 @@
     <header>
         <a href="/">Autocue</a>&emsp;
         <a href="/edit-script/{{script_id}}">Edit this script</a>&emsp;
-        <span id="speed-indicator">Gamepad not detected</span>
+        <span id="speed-indicator">Gamepad not detected</span>&emsp;
+        <button onclick="smallerFont()">➖</button>
+        Text size
+        <button onclick="biggerFont()">➕</button>
     </header>
 
-    <div class="autocue">
+    <div id="autocue">
         {%- for line in text -%}
         {{ line }}
         <br />
@@ -23,6 +26,7 @@
     </div>
 
     <script>
+        var fontSize = 40;
         var speed = 0;
         var delay = 17;
         function pageScroll() {
@@ -45,13 +49,22 @@
             var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
             var gp = gamepads[0];
 
-            // debugger;
             var triggerPressure = Math.floor(gp.buttons[7].value * 100) || Math.floor(gp.buttons[6].value * -100);
             speed = Math.ceil(triggerPressure / 20);
 
-            speedIndicator.innerHTML = `triggerPressure=${triggerPressure}; speed=${speed}; delay=${delay}`;
+            speedIndicator.innerHTML = `Speed ${speed}`;
 
             requestAnimationFrame(gamepadLoop);
+        }
+
+        function biggerFont() {
+            fontSize = fontSize * 1.3;
+            document.getElementById('autocue').style.fontSize = fontSize + 'pt'
+        }
+
+        function smallerFont() {
+            fontSize = fontSize / 1.3;
+            document.getElementById('autocue').style.fontSize = fontSize + 'pt'
         }
     </script>
 </body>
