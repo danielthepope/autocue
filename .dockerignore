@@ -1,0 +1,12 @@
+.dockerignore
+.env
+.git
+.gitignore
+.vscode
+__pycache__
+autocue.tar.gz
+data
+docker-compose.yml
+dockerbuild
+Dockerfile
+venv

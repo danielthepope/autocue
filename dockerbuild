@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+docker build $(dirname $0) -t autocue:$(date +"%Y-%m-%d_%H-%M-%S") -t autocue
