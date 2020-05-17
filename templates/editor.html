@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Autocue editor</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-    <form method="POST" action="/script/{{script_id}}">
+    <p><a href="/">Autocue</a></p>
+    <h1>Editor</h1>
+    <form method="POST" action="/script">
         <textarea name="text" cols="50" rows="20">{{text}}</textarea>
         <br>
         <input type="submit" value="Save">

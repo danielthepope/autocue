@@ -48,22 +48,11 @@ def view_script(script_id):
     return render_template('autocue.html', script_id=script_id.upper(), text=lines)
 
 
-@app.route('/script/', methods=['POST'])
+@app.route('/script', methods=['POST'])
 def add_script():
     if request.form and 'text' in request.form:
         script_id = new_id()
         script = Script(script_id=script_id, text=request.form.get('text'), created=int(time.time()))
-        db.session.add(script)
-        db.session.commit()
-    return redirect(f'/script/{script_id}')
-
-
-@app.route('/script/<script_id>', methods=['POST'])
-def update_script(script_id):
-    if request.form and 'text' in request.form:
-        script = Script.query.get(script_id)
-        script.text = request.form.get('text')
-        script.created = int(time.time())
         db.session.add(script)
         db.session.commit()
     return redirect(f'/script/{script_id}')

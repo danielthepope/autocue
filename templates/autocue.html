@@ -4,13 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Autocue {{script_id}}</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 
-<body>
-    <a href="/edit-script/{{script_id}}">Edit this script</a>
-    <span id="speed-indicator">Gamepad not detected</span>
+<body class="no-margin">
+    <header>
+        <a href="/">Autocue</a>
+        <a href="/edit-script/{{script_id}}">Edit this script</a>
+        <span id="speed-indicator">Gamepad not detected</span>
+    </header>
+
     <div class="autocue">
         {%- for line in text -%}
         {{ line }}
@@ -22,7 +26,9 @@
         var speed = 0;
         var delay = 100;
         function pageScroll() {
-            window.scrollBy(0, speed);
+            if (speed) {
+                window.scrollBy(0, speed);
+            }
             scrolldelay = setTimeout(pageScroll, delay);
         }
         pageScroll();
@@ -46,10 +52,10 @@
                 delay = 100;
             } else if (triggerPressure >= 5) {
                 speed = 1;
-                delay = 100 - triggerPressure;
+                delay = 110 - triggerPressure;
             } else {
                 speed = -1;
-                delay = 100 + triggerPressure;
+                delay = 110 + triggerPressure;
             }
 
             speedIndicator.innerHTML = `triggerPressure=${triggerPressure}; speed=${speed}; delay=${delay}`;
