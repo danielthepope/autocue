@@ -40,6 +40,6 @@ input[type=submit], button {
 
 #autocue {
     margin: 8px;
-    padding-top: 1em;
+    padding: 70vh 0;
     font-size: 40pt;
 }
